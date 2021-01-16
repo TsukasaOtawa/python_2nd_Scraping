@@ -3,6 +3,8 @@ import json
 from datetime import datetime, timedelta, timezone
 from pprint import pprint # pprint (pretty-print)
 import pandas as pd
+import matplotlib.pyplot as plt
+import japanize_matplotlib
 
 # https://openweathermap.org/api
 url = "http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={key}&lang=ja&units=metric"
@@ -23,4 +25,8 @@ for dat in jsondata["list"]:
     # print("日時={jst}, 天気={w}, 気温={t}度".format(jst=jst, w=weather, t=temp))
     df.loc[jst] = temp
 
-pprint(df)
+# pprint(df)
+df.plot(figsize=(15, 8))
+plt.ylim(-10, 40)
+plt.grid()
+plt.show()
